@@ -1,4 +1,6 @@
-import React from 'react'
+import { useState } from 'react'
+import { monedas } from '../data/monedas'
+import useSelectMonedas from '../hooks/useSelectMonedas'
 import styled from '@emotion/styled'
 
 const InputSubmit = styled.input`
@@ -19,14 +21,21 @@ const InputSubmit = styled.input`
 `
 
 const Formulario = () => {
+
+
+
+  const [ SelectMonedas ] = useSelectMonedas('Elige tu Moneda', monedas)
+
   return (
+
     <form>
+
+        <SelectMonedas />
 
         <InputSubmit 
             type="submit" 
             value='Cotizar'
         />
-
     </form>
   )
 }
