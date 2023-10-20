@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 const Texto = styled.div`
     background-color: #b7322c;
     color: #FFF;
-    margin-top: 1.5rem;
+    margin-top: 1px;
     padding: 15px;
     font-size: 22px;
     text-transform: uppercase;
