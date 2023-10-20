@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { monedas } from '../data/monedas'
-import useSelectMonedas from '../hooks/useSelectMonedas'
 import styled from '@emotion/styled'
+import  Error from './Error'
+import useSelectMonedas from '../hooks/useSelectMonedas'
+
 
 const InputSubmit = styled.input`
     background-color: #9497ff;
@@ -20,35 +22,60 @@ const InputSubmit = styled.input`
         cursor: pointer;
     }
 `
-
 const Formulario = () => {
 
+  const [criptos, setCriptos] = useState([])
+  const [error, setError] = useState(false)
+
   const [ moneda, SelectMonedas ] = useSelectMonedas('Elige tu Moneda', monedas)
+  const [ criptomonedas, SelectCriptomonedas ] = useSelectMonedas('Elige tu Criptomoneda', criptos)
 
   useEffect(() => {
     const consultarApi = async () => {
-      const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
+      const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD'
       const respuesta = await fetch(url)
       const resultado = await respuesta.json()
 
-      console.log(resultado.Data)
+        const arrayCriptos = resultado.Data.map( cripto => {
+            const objeto = {
+              id: cripto.CoinInfo.Name,
+              nombre: cripto.CoinInfo.FullName
+            }
+            return objeto
+        })
+
+        setCriptos(arrayCriptos)
     }
     consultarApi()
   }, [])
 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    if([moneda, criptomonedas].includes('')) {
+      setError(true)
+
+      return
+    }
+    setError(false)
+  }
+
   return (
+    <>
+        <form
+          onSubmit={handleSubmit}
+        >
+            <SelectMonedas />
+            <SelectCriptomonedas />
+            
 
-    <form>
-
-        <SelectMonedas />
-
-        {moneda}
-
-        <InputSubmit 
-            type="submit" 
-            value='Cotizar'
-        />
-    </form>
+            <InputSubmit 
+                type="submit" 
+                value='Cotizar'
+            />
+            {error && <Error>Los campos son obligatorios</Error>}
+        </form>
+    </>
   )
 }
 
