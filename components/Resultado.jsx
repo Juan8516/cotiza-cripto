@@ -34,7 +34,6 @@ const Precio = styled.p`
     }
 `
 
-
 const Resultado = ( {resultado} ) => {
     const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE } = resultado
   return (

@@ -13,7 +13,7 @@ const Texto = styled.div`
     text-align: center;
 `
 
-const Error = ({children}) => {
+const Error = ( {children} ) => {
   return (
     <Texto>
       {children}
