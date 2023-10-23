@@ -6,6 +6,7 @@ import ImagenCripto from './img/imagen-criptos.png'
 
 const Contenedor = styled.div`
   max-width: 900px;
+  margin-top: 20px;
   margin: 0 auto;
   width: 90%;
   @media (min-width: 992px) {
@@ -71,7 +72,7 @@ function App() {
           />
           {resultado.PRICE && <Resultado resultado={resultado}/>}
       </div>
-      
+
     </Contenedor>
   )
 }
