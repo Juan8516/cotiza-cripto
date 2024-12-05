@@ -6,7 +6,7 @@ import useSelectMonedas from '../hooks/useSelectMonedas'
 
 
 const InputSubmit = styled.input`
-    background-color: #9497ff;
+    background-color: #ff9800;
     border: none;
     width: 100%;
     padding: 10px;
@@ -19,7 +19,7 @@ const InputSubmit = styled.input`
     margin-top: 30px;
     margin-bottom: 30px;
     &:hover {
-        background-color: #7A7DFE;
+        background-color: #e68a00;
         cursor: pointer;
     }
 `
